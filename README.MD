@@ -139,3 +139,29 @@ query {
     }
 }
 ```
+
+
+We can also use codegen to generate model:
+
+```xml
+            <plugin>
+                <groupId>io.github.deweyjose</groupId>
+                <artifactId>graphqlcodegen-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaPaths>
+                        <param>src/main/resources/schema/user/schema.graphqls</param>
+                    </schemaPaths>
+                    <packageName>edu.man.dgs.model</packageName>
+                </configuration>
+            </plugin>
+
+
+```

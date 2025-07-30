@@ -36,6 +36,16 @@ type Post {
   createdAt: DateTime!
 }
 
+#extend type Post @key(fields: "id") @extends {
+#  id: ID! @external
+#  reviews: [Review]
+#}
+#
+#type Review {
+#  rating: Int
+#  createdAt: DateTime!
+#}
+
 type Query {
   user(id: ID!): UserModel
   users: [UserModel]
