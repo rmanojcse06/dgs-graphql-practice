@@ -128,7 +128,22 @@ QUERY A POST
 ```graphql
 
 query {
-    postsBefore(dateTime :"2025-07-31 21:14:49") {
+    posts_before(dateTime :"2025-07-31 21:14:49") {
+        id
+        title
+        addedBy {
+            name
+            role
+            email
+        }
+    }
+}
+```
+
+```graphql
+
+query {
+    posts_before(dateTime :"2025-07-31 21:14:49") {
         id
         title
         addedBy {

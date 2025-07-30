@@ -5,6 +5,7 @@ import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import edu.man.dgs.model.*;
+import graphql.execution.DataFetcherResult;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -56,7 +57,18 @@ public class DataFetcher {
         return postRepo;
     }
 
-    @DgsQuery
+    @DgsQuery(field = "post_by_user")
+    public DataFetcherResult<List<Post>> postByUser(@InputArgument("userid") String userId) {
+        log.info("Inside UserFetcher.postByUser() ==> userId: {}", userId);
+        return DataFetcherResult.<List<Post>>newResult()
+                .data(postRepo.stream()
+                        .filter(post -> post.getAddedBy() != null && post.getAddedBy().getId().equals(userId))
+                        .collect(Collectors.toList()))
+                .localContext(userRepo.stream().filter(u -> u.getId().equals(userId)).findFirst().orElse(null))
+                .build();
+    }
+
+    @DgsQuery(field = "posts_before")
     public List<Post> postsBefore(@InputArgument("dateTime") LocalDateTime dateTime) {
         return postRepo.stream()
                 .filter(post -> post.getCreatedAt().isBefore(dateTime))

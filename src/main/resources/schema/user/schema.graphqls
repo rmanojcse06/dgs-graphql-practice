@@ -52,7 +52,8 @@ type Query {
   get_guests: [GuestUser]
   get_admins: [AdminUser]
   posts: [Post]
-  postsBefore(dateTime: DateTime!): [Post!]!
+  posts_before(dateTime: DateTime!): [Post!]!
+  post_by_user(userid: ID!): [Post!]!
 }
 
 input UserModelInput {
