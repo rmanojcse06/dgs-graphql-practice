@@ -22,15 +22,33 @@ type GuestUser implements UserModel  @key(fields: "id"){
   phoneNumber: String!
 }
 
+scalar DateTime
+
+type Post {
+  id: ID!
+  title: String
+  content: String
+  addedBy: UserModel!
+  createdAt: DateTime!
+}
+
 type Query {
   user(id: ID!): UserModel
   users: [UserModel]
   get_guests: [GuestUser]
   get_admins: [AdminUser]
+  posts: [Post]
+  postsBefore(dateTime: DateTime!): [Post!]!
+}
+
+input UserModelInput {
+  id: ID!
+  name: String
 }
 
 type Mutation {
-  addUser(name: String!, phoneNumber: String! = "no-phone-number", email: String): UserModel
+  add_user(name: String!, phoneNumber: String! = "no-phone-number", email: String): UserModel
+  add_post(title: String!, content: String!, userInput: UserModelInput!): Post
 }
 
 type Subscription {

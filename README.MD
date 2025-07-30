@@ -34,13 +34,13 @@ ADDING A USER : OPERATION
 
 ```graphql
 mutation {
-  addUser(name: "Monkey", phoneNumber: "4234") {
-    id
-    name
-    email
-    ...on GuestUser {
-      phoneNumber
-    }
+    add_user(name: "Monkey", phoneNumber: "4234") {
+        id
+        name
+        email
+        ...on GuestUser {
+          phoneNumber
+        }
   }
 }
 ```
@@ -95,4 +95,47 @@ query {
     },
 }
 
+```
+
+POST A MESSAGE
+
+```graphql
+
+mutation {
+  add_post(
+    title: "GraphQL with DGS"
+    content: "Netflix DGS is awesome!"
+    userInput: {
+      id: "1"
+      name: "Manoj"
+    }
+  ) {
+    id
+    title
+    createdAt
+    addedBy {
+      name
+      role
+      email
+    }
+  }
+}
+
+```
+
+QUERY A POST
+
+```graphql
+
+query {
+    postsBefore(dateTime :"2025-07-31 21:14:49") {
+        id
+        title
+        addedBy {
+            name
+            role
+            email
+        }
+    }
+}
 ```
