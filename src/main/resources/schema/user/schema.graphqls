@@ -1,0 +1,38 @@
+interface UserModel @key(fields: "id") {
+  id: ID!
+  name: String
+  email: String
+  role: String
+}
+
+type AdminUser implements UserModel  @key(fields: "id"){
+  id: ID!
+  name: String
+  email: String
+  phoneNumber: String
+  role: String!
+  seed: Float!
+}
+
+type GuestUser implements UserModel  @key(fields: "id"){
+  id: ID!
+  name: String
+  email: String
+  role: String
+  phoneNumber: String!
+}
+
+type Query {
+  user(id: ID!): UserModel
+  users: [UserModel]
+  get_guests: [GuestUser]
+  get_admins: [AdminUser]
+}
+
+type Mutation {
+  addUser(name: String!, phoneNumber: String! = "no-phone-number", email: String): UserModel
+}
+
+type Subscription {
+  userCreated: UserModel
+}

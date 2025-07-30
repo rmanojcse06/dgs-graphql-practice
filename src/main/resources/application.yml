@@ -1,0 +1,10 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.r2dbc.R2dbcAutoConfiguration, org.springframework.boot.autoconfigure.couchbase.CouchbaseAutoConfiguration
+
+
+dgs:
+  graphql:
+    enabled: true
+    endpoint: /graphql
+    schema-location: "classpath*:schema/user/*.graphql*"
