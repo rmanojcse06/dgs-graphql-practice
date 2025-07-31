@@ -9,6 +9,26 @@ mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=9090
 
 ```
 
+### Schema file:
+- [schema.graphqls](src/main/resources/schema/user/schema.graphqls)
+
+### Models:
+- [UserModel](src/main/java/edu/man/dgs/model/UserModel.java)
+- [Post](src/main/java/edu/man/dgs/model/Post.java)
+
+### Scalar: dateTime
+- [DateTimeScalar](src/main/java/edu/man/dgs/utils/DateTimeScalar.java)
+
+### Fetchers: query and mutation
+- [DataFetcher](src/main/java/edu/man/dgs/query/DataFetcher.java)
+
+### Directives: upper / lower
+- [DirectiveConfigurer](src/main/java/edu/man/dgs/utils/DirectiveConfigurer.java)
+- [UpperDirective](src/main/java/edu/man/dgs/utils/UpperDirective.java)
+
+### Resolvers:
+- [UserResolver](src/main/java/edu/man/dgs/utils/UserResolver.java)
+
 
 Open igraphql in browser: http://localhost:9090/graphiql
 
